@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 
 class OpenWeatherApiClient {
-  static const baseUrl = 'api.openweathermap.org';
+  static const baseUrl = 'http://api.openweathermap.org';
   final appId = WeatherUtil.appId;
   final http.Client httpClient;
 

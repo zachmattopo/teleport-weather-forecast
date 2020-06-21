@@ -1,13 +1,21 @@
 import 'package:bloc/bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:carsome_weather/apis/apis.dart';
-import 'package:carsome_weather/main_bloc_delegate.dart';
-import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 import 'package:carsome_weather/blocs/weather_bloc.dart';
+import 'package:carsome_weather/main_bloc_delegate.dart';
 import 'package:carsome_weather/widgets/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
   BlocSupervisor.delegate = MainBlocDelegate();
 
   final OpenWeatherApiClient weatherApiClient = OpenWeatherApiClient(
@@ -27,11 +35,12 @@ class CarsomeWeatherApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(primarySwatch: Colors.amber),
       title: 'Carsome Weather',
       home: BlocProvider(
         create: (context) =>
             WeatherBloc(openWeatherApiClient: weatherApiClient),
-        child: WeatherWidget(),
+        child: WeatherParentWidget(),
       ),
     );
   }

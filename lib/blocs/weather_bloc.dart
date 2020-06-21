@@ -23,7 +23,22 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   Stream<WeatherState> mapEventToState(
     WeatherEvent event,
   ) async* {
-    if (event is WeatherViaLocIdRequested || event is WeatherViaLatLongRequested) {
+    if (event is StarterWeatherRequested) {
+      yield WeatherLoadInProgress();
+
+      try {
+        List<Weather> weatherList = [];
+
+        for (final locId in event.locIdList) {
+          Weather weather = await openWeatherApiClient.getCurrentWeatherByLocId(locId);
+          weatherList.add(weather);
+        }
+        
+        yield StarterWeatherLoadSuccess(weatherList: weatherList);
+      } catch (_) {
+        yield WeatherLoadFailure();
+      }
+    } else if (event is WeatherViaLocIdRequested || event is WeatherViaLatLongRequested) {
       yield WeatherLoadInProgress();
 
       try {

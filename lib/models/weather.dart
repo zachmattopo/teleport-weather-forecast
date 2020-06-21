@@ -22,9 +22,9 @@ enum WeatherCondition {
 class Weather extends Equatable {
   final WeatherCondition condition;
   final String formattedCondition;
-  final double minTemp;
-  final double temp;
-  final double maxTemp;
+  final num minTemp;
+  final num temp;
+  final num maxTemp;
   final int locationId;
   final int created;
   final DateTime lastUpdated;
@@ -59,9 +59,9 @@ class Weather extends Equatable {
     return Weather(
       condition: _mapStringToWeatherCondition(json['weather'][0]['id'] as int),
       formattedCondition: json['weather'][0]['description'],
-      minTemp: json['main']['temp_min'] as double,
-      temp: json['main']['temp'] as double,
-      maxTemp: json['main']['temp_max'] as double,
+      minTemp: json['main']['temp_min'] as num,
+      temp: json['main']['temp'] as num,
+      maxTemp: json['main']['temp_max'] as num,
       locationId: json['id'] as int,
       created: json['dt'] as int,
       lastUpdated: DateTime.now(),

@@ -11,6 +11,15 @@ class WeatherInitial extends WeatherState {}
 
 class WeatherLoadInProgress extends WeatherState {}
 
+class StarterWeatherLoadSuccess extends WeatherState {
+  final List<Weather> weatherList;
+
+  StarterWeatherLoadSuccess({@required this.weatherList}) : assert(weatherList != null);
+
+  @override
+  List<Object> get props => [weatherList];
+}
+
 class WeatherLoadSuccess extends WeatherState {
   final Weather weather;
 

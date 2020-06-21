@@ -4,6 +4,16 @@ abstract class WeatherEvent extends Equatable {
   const WeatherEvent();
 }
 
+class StarterWeatherRequested extends WeatherEvent {
+  final List<int> locIdList;
+
+  const StarterWeatherRequested({@required this.locIdList})
+      : assert(locIdList != null);
+
+  @override
+  List<Object> get props => [locIdList];
+}
+
 class WeatherViaLocIdRequested extends WeatherEvent {
   final int locId;
 

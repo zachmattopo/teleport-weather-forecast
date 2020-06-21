@@ -4,4 +4,6 @@ class WeatherUtil {
   static int kualaLumpurLocId = 1733046;
   static int georgeTownLocId = 1735106;
   static int johorBahruLocId = 1732752;
+
+  static List<int> starterList = [kualaLumpurLocId, georgeTownLocId, johorBahruLocId];
 }
