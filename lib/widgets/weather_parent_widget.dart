@@ -26,7 +26,8 @@ class WeatherParentWidget extends StatelessWidget {
         body: BlocBuilder<WeatherBloc, WeatherState>(
           builder: (context, state) {
             if (state is WeatherInitial) {
-              return Center(child: Text('Please select a location'));
+              return Center(
+                  child: Text('App is loading.\nThat, or it might be broken.'));
             }
 
             if (state is WeatherLoadInProgress) {
@@ -39,6 +40,7 @@ class WeatherParentWidget extends StatelessWidget {
             }
 
             if (state is WeatherLoadSuccess) {
+              // TODO: New location addition.
               // final weather = state.weather;
 
               // return ListView(
@@ -74,22 +76,7 @@ class WeatherParentWidget extends StatelessWidget {
             }
           },
         ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.add_location),
-          onPressed: () async {
-            // final city = await Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            // TODO: CitySelection page to add new cities
-            //     builder: (context) => CitySelection(),
-            //   ),
-            // );
-            // if (city != null) {
-            //   BlocProvider.of<WeatherBloc>(context)
-            //       .add(WeatherRequested(city: city));
-            // }
-          },
-        ),
+        floatingActionButton: CitySelectionWidget(),
       ),
     );
   }
