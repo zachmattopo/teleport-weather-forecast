@@ -18,31 +18,35 @@ class TemperatureWidget extends StatelessWidget {
       children: [
         Text(
           '${temp.toStringAsFixed(1)} °C',
-          style: TextStyle(
-            fontSize: 32,
-            fontWeight: FontWeight.w600,
-          ),
+          style: Theme.of(context).textTheme.headline3.copyWith(
+                color: Colors.black,
+              ),
         ),
         SizedBox(
-          height: 10,
+          height: 16,
         ),
-        Column(
-          children: [
-            Text(
-              'Max: ${maxTemp.toStringAsFixed(1)} °C',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w300,
+        Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.black),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          padding: EdgeInsets.all(8),
+          child: Column(
+            children: [
+              Text(
+                'Max: ${maxTemp.toStringAsFixed(1)} °C',
+                style: Theme.of(context).textTheme.headline6.copyWith(
+                      color: Colors.orange,
+                    ),
               ),
-            ),
-            Text(
-              'Min: ${minTemp.toStringAsFixed(1)} °C',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w300,
-              ),
-            )
-          ],
+              Text(
+                'Min: ${minTemp.toStringAsFixed(1)} °C',
+                style: Theme.of(context).textTheme.headline6.copyWith(
+                      color: Colors.lightBlue,
+                    ),
+              )
+            ],
+          ),
         ),
       ],
     );

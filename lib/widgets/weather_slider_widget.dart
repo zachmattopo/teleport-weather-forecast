@@ -1,7 +1,6 @@
-import 'package:carsome_weather/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:carsome_weather/models/weather.dart';
+import 'package:teleport_weather_forecast/models/weather.dart';
+import 'package:teleport_weather_forecast/widgets/widgets.dart';
 
 class WeatherSliderWidget extends StatelessWidget {
   final List<Weather> weatherList;
@@ -14,14 +13,8 @@ class WeatherSliderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: CarouselSlider.builder(
-        options: CarouselOptions(
-          // height: 400.0,
-          aspectRatio: 0.63,
-          enableInfiniteScroll: false,
-          enlargeCenterPage: true,
-        ),
+    return SafeArea(
+      child: PageView.builder(
         itemCount: weatherList.length,
         itemBuilder: (BuildContext context, int index) {
           final weather = weatherList[index];
@@ -31,12 +24,12 @@ class WeatherSliderWidget extends StatelessWidget {
           final temp = weather.temp;
           final maxTemp = weather.maxTemp;
           final minTemp = weather.minTemp;
-
-          return Container(
-            width: MediaQuery.of(context).size.width,
-            margin: EdgeInsets.symmetric(horizontal: 5.0),
-            decoration: BoxDecoration(color: Colors.amber),
+    
+          return Card(
+            margin: EdgeInsets.all(12),
+            elevation: 4,
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Flexible(
                   flex: 2,

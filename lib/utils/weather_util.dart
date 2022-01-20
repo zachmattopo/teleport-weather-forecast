@@ -1,5 +1,5 @@
 class WeatherUtil {
-  static String appId = '8b0dcb9ae8d21fda36bbcdb0656dceca';
+  static String apiKey = '8131dd1c64f2e0780c5003469688e0a0';
 
   static int kualaLumpurLocId = 1733046;
   static int georgeTownLocId = 1735106;

@@ -12,6 +12,9 @@ class StarterWeatherRequested extends WeatherEvent {
 
   @override
   List<Object> get props => [locIdList];
+
+  @override
+  String toString() => 'StarterWeatherRequested { locIdList: $locIdList }';
 }
 
 class WeatherViaLocIdRequested extends WeatherEvent {
@@ -22,6 +25,9 @@ class WeatherViaLocIdRequested extends WeatherEvent {
 
   @override
   List<Object> get props => [locId];
+
+  @override
+  String toString() => 'WeatherViaLocIdRequested { locId: $locId }';
 }
 
 class WeatherViaLatLongRequested extends WeatherEvent {
@@ -38,4 +44,7 @@ class WeatherViaLatLongRequested extends WeatherEvent {
         lat,
         long,
       ];
+
+      @override
+  String toString() => 'WeatherViaLatLongRequested { lat: $lat, long: $long }';
 }

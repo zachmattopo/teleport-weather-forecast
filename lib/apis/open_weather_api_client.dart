@@ -1,13 +1,13 @@
 import 'dart:convert';
 
-import 'package:carsome_weather/models/models.dart';
-import 'package:carsome_weather/utils/weather_util.dart';
+import 'package:teleport_weather_forecast/models/models.dart';
+import 'package:teleport_weather_forecast/utils/weather_util.dart';
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
 
 class OpenWeatherApiClient {
   static const baseUrl = 'http://api.openweathermap.org';
-  final appId = WeatherUtil.appId;
+  final apiKey = WeatherUtil.apiKey;
   final http.Client httpClient;
 
   OpenWeatherApiClient({
@@ -15,8 +15,9 @@ class OpenWeatherApiClient {
   }) : assert(httpClient != null);
 
   Future<Weather> getCurrentWeatherByLocId(int locationId) async {
-    final weatherUrl = '$baseUrl/data/2.5/weather?id=$locationId&units=metric&appid=$appId';
-    final weatherResponse = await this.httpClient.get(weatherUrl);
+    final weatherUrl =
+        '$baseUrl/data/2.5/weather?id=$locationId&units=metric&appid=$apiKey';
+    final weatherResponse = await this.httpClient.get(Uri.parse(weatherUrl));
 
     if (weatherResponse.statusCode != 200) {
       throw Exception('Error getting weather for location!');
@@ -27,8 +28,9 @@ class OpenWeatherApiClient {
   }
 
   Future<Weather> getCurrentWeatherByLatLong(double lat, double long) async {
-    final weatherUrl = '$baseUrl/data/2.5/weather?lat=$lat&lon=$long&units=metric&appid=$appId';
-    final weatherResponse = await this.httpClient.get(weatherUrl);
+    final weatherUrl =
+        '$baseUrl/data/2.5/weather?lat=$lat&lon=$long&units=metric&appid=$apiKey';
+    final weatherResponse = await this.httpClient.get(Uri.parse(weatherUrl));
 
     if (weatherResponse.statusCode != 200) {
       throw Exception('Error getting weather for location!');

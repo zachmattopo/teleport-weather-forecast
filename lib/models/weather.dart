@@ -57,7 +57,7 @@ class Weather extends Equatable {
 
   static Weather fromJson(dynamic json) {
     return Weather(
-      condition: _mapStringToWeatherCondition(json['weather'][0]['id'] as int),
+      condition: _mapIntToWeatherCondition(json['weather'][0]['id'] as int),
       formattedCondition: json['weather'][0]['description'],
       minTemp: json['main']['temp_min'] as num,
       temp: json['main']['temp'] as num,
@@ -69,7 +69,7 @@ class Weather extends Equatable {
     );
   }
 
-  static WeatherCondition _mapStringToWeatherCondition(int input) {
+  static WeatherCondition _mapIntToWeatherCondition(int input) {
     WeatherCondition state;
 
     switch (input) {

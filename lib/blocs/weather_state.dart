@@ -9,15 +9,25 @@ abstract class WeatherState extends Equatable {
 
 class WeatherInitial extends WeatherState {}
 
-class WeatherLoadInProgress extends WeatherState {}
+class WeatherLoadInProgress extends WeatherState {
+  const WeatherLoadInProgress();
+
+  @override
+  String toString() => 'WeatherLoadInProgress';
+}
 
 class StarterWeatherLoadSuccess extends WeatherState {
   final List<Weather> weatherList;
 
-  StarterWeatherLoadSuccess({@required this.weatherList}) : assert(weatherList != null);
+  StarterWeatherLoadSuccess({@required this.weatherList})
+      : assert(weatherList != null);
 
   @override
   List<Object> get props => [weatherList];
+
+  @override
+  String toString() =>
+      'StarterWeatherLoadSuccess { weatherList: $weatherList }';
 }
 
 class WeatherLoadSuccess extends WeatherState {
@@ -27,7 +37,14 @@ class WeatherLoadSuccess extends WeatherState {
 
   @override
   List<Object> get props => [weather];
+
+  @override
+  String toString() => 'WeatherLoadSuccess { weather: $weather }';
 }
 
-class WeatherLoadFailure extends WeatherState {}
+class WeatherLoadFailure extends WeatherState {
+  const WeatherLoadFailure();
 
+  @override
+  String toString() => 'WeatherLoadFailure';
+}

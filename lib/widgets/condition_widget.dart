@@ -1,29 +1,28 @@
 import 'package:flutter/material.dart';
 
-import 'package:carsome_weather/models/models.dart';
+import 'package:teleport_weather_forecast/models/models.dart';
 
 class ConditionWidget extends StatelessWidget {
   final WeatherCondition condition;
   final String stringCondition;
 
-  ConditionWidget(
-      {Key key, @required this.condition, this.stringCondition})
+  ConditionWidget({Key key, @required this.condition, this.stringCondition})
       : assert(condition != null && stringCondition != null),
         super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Image image;
+    String imagePath;
     switch (condition) {
       case WeatherCondition.thunderstorm:
-        image = Image.asset('assets/storm.png');
+        imagePath = 'assets/storm.png';
         break;
       case WeatherCondition.drizzle:
       case WeatherCondition.rain:
-        image = Image.asset('assets/rain.png');
+        imagePath = 'assets/rain.png';
         break;
       case WeatherCondition.snow:
-        image = Image.asset('assets/snow.png');
+        imagePath = 'assets/snow.png';
         break;
       case WeatherCondition.mist:
       case WeatherCondition.smoke:
@@ -32,13 +31,13 @@ class ConditionWidget extends StatelessWidget {
       case WeatherCondition.fog:
       case WeatherCondition.sand:
       case WeatherCondition.ash:
-        image = Image.asset('assets/fog.png');
+        imagePath = 'assets/fog.png';
         break;
       case WeatherCondition.squall:
-        image = Image.asset('assets/windy-weather.png');
+        imagePath = 'assets/windy-weather.png';
         break;
       case WeatherCondition.tornado:
-        image = Image.asset('assets/wind.png');
+        imagePath = 'assets/wind.png';
         break;
       case WeatherCondition.clear:
         TimeOfDay now = TimeOfDay.now();
@@ -46,29 +45,33 @@ class ConditionWidget extends StatelessWidget {
         final nightTime = TimeOfDay(hour: 19, minute: 30);
         double nightTimeDouble = nightTime.hour + nightTime.minute / 60.0;
 
-        image = nowDouble > nightTimeDouble
-            ? Image.asset('assets/moon-and-stars.png')
-            : Image.asset('assets/sun-smiling.png');
+        imagePath = nowDouble > nightTimeDouble
+            ? 'assets/moon-and-stars.png'
+            : 'assets/sun-smiling.png';
         break;
       case WeatherCondition.clouds:
-        image = Image.asset('assets/clouds.png');
+        imagePath = 'assets/clouds.png';
         break;
       case WeatherCondition.unknown:
-        image = Image.asset('assets/sun-smiling.png');
+        imagePath = 'assets/sun-smiling.png';
         break;
     }
 
     return Column(
       children: <Widget>[
         Text(
-          stringCondition,
+          '${stringCondition[0].toUpperCase()}${stringCondition.substring(1)} currently.',
           style: TextStyle(
             fontSize: 18,
             fontStyle: FontStyle.italic,
           ),
         ),
-        SizedBox(height: 20),
-        image,
+        const SizedBox(height: 20),
+        Image.asset(
+          imagePath,
+          height: 100,
+          width: 100,
+        ),
       ],
     );
   }
